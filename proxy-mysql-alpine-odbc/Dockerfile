@@ -13,7 +13,12 @@ STOPSIGNAL SIGTERM
 #ORACLE INSTANT_CLIENT
 
 ENV LD_LIBRARY_PATH=/lib
+ENV ORACLE_BASE=/lib
+ENV ORACLE_HOME=/lib
 ENV TNS_ADMIN=/lib/network/admin/
+
+
+
 
 RUN wget https://download.oracle.com/otn_software/linux/instantclient/instantclient-basiclite-linuxx64.zip && \
     wget https://download.oracle.com/otn_software/linux/instantclient/instantclient-odbc-linuxx64.zip && \
