@@ -11,7 +11,7 @@ Check the version installed
 
 
 ## Build
-`docker build https://github.com/rodrigocora/zabbix-db-drivers.git\#main:proxy-mysql-alpine-odbc -t zabbix-proxy-mysql-odbc`
+`docker build https://github.com/rodrigocora/zabbix-db-drivers.git\#main:docker-build-proxy -t zabbix-proxy-mysql-odbc`
 
 
 
