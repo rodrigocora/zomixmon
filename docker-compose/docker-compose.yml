@@ -14,7 +14,7 @@ services:
       - zabbix-proxy-db-conf:/etc/mysql/
       - zabbix-proxy-db-data:/var/lib/mysql/
     restart: unless-stopped
-  
+
   zabbixproxy:
     image: zabbix-proxy-mysql-odbc:latest
     environment:
@@ -22,18 +22,20 @@ services:
       DB_SERVER_PORT: 3306
       MYSQL_USER: zabbix
       MYSQL_PASSWORD: zabbix
-      ZBX_HOSTNAME: rc-oci-zabbix-proxy
+      ZBX_HOSTNAME: ps.oci.docker-zabbix-proxy
       ZBX_SERVER_HOST: 130.61.94.213
       ZBX_SERVER_PORT: 10051
       ZBX_ENABLEREMOTECOMMANDS: 1
     depends_on:
       - zabbixproxy_db
     volumes:
-      - ./odbc.ini:/etc/odbc.ini
+      - ./etc/odbc.ini:/etc/odbc.ini
+      - ./etc/odbcinst.ini:/etc/odbcinst.ini
+      - ./lib/network/admin/tnsnames.ora:/lib/network/admin/tnsnames.ora
     links:
       - zabbixproxy_db
     restart: unless-stopped
 
 volumes:
-  zabbix-proxy-db-conf: 
-  zabbix-proxy-db-data: 
+  zabbix-proxy-db-conf:
+  zabbix-proxy-db-data:
