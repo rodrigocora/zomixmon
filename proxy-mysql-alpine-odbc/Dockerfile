@@ -15,11 +15,14 @@ STOPSIGNAL SIGTERM
 ENV LD_LIBRARY_PATH=/lib
 
 RUN wget https://download.oracle.com/otn_software/linux/instantclient/instantclient-basiclite-linuxx64.zip && \
-    unzip instantclient-basiclite-linuxx64.zip && \
+    wget https://download.oracle.com/otn_software/linux/instantclient/instantclient-odbc-linuxx64.zip && \
+    unzip -q instantclient-basiclite-linuxx64.zip && \
+    unzip -q instantclient-odbc-linuxx64.zip && \
     rm -f instantclient-basiclite-linuxx64.zip && \
-    cd instantclient* && \
+    rm -f instantclient-odbc-linuxx64.zip && \
+    cd $(ls -d instantclient*/|head -n 1) && \
     rm -f *jdbc* *occi* *mysql* *jar uidrvci genezi adrci && \
-    cp -r * /lib && \
+    mv * /lib && \
     apk add libaio && \
     apk add libaio libnsl libc6-compat
 
