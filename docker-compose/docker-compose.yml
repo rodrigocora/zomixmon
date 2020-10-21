@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
   
   zabbixproxy:
-    image: zabbix-proxy-mysql-odbc:alpine-odbc-latest
+    image: zabbix-proxy-mysql-odbc:latest
     environment:
       DB_SERVER_HOST: zabbixproxy_db
       DB_SERVER_PORT: 3306
@@ -29,7 +29,7 @@ services:
     depends_on:
       - zabbixproxy_db
     volumes:
-      - odbc.ini:/etc/odbc.ini
+      - ./odbc.ini:/etc/odbc.ini
     links:
       - zabbixproxy_db
     restart: unless-stopped
