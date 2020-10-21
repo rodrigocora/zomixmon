@@ -1,0 +1,8 @@
+OCI_TEST =
+        (DESCRIPTION =
+                (ADDRESS = (PROTOCOL = TCP)(HOST = 10.0.0.4)(PORT = 1521))
+                (CONNECT_DATA =
+                        (SERVER = DEDICATED)
+                        (SERVICE_NAME = test)
+                )
+        )
