@@ -25,10 +25,14 @@ services:
       ZBX_HOSTNAME: ps.oci.docker-zabbix-proxy
       ZBX_SERVER_HOST: 130.61.94.213
       ZBX_SERVER_PORT: 10051
+      ZBX_TLSPSKIDENTITY: ps.oci.docker-zabbix-proxy
+      ZBX_TLSCONNECT: psk
+      ZBX_TLSPSKFILE: zabbix_proxy.psk
       ZBX_ENABLEREMOTECOMMANDS: 1
     depends_on:
       - zabbixproxy_db
     volumes:
+      - ./zabbix_proxy.psk:/var/lib/zabbix/enc/zabbix_proxy.psk
       - ./etc/odbc.ini:/etc/odbc.ini
       - ./etc/odbcinst.ini:/etc/odbcinst.ini
       - ./lib/network/admin/tnsnames.ora:/lib/network/admin/tnsnames.ora
