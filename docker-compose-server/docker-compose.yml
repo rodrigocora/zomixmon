@@ -1,8 +1,8 @@
 version: "3"
 services:
   timescaledb:
-    # image: timescale/timescaledb:1.7.0-pg12
-    image: postgres:12.4-alpine
+    image: timescale/timescaledb:1.7.0-pg12
+    # image: postgres:12.4-alpine
     ports:
       - '5432:5432'
     environment:
@@ -10,13 +10,15 @@ services:
       - POSTGRES_PASSWORD=Welcome
       - POSTGRES_DB=zabbix
     volumes:
-      # - ./postgresql/data:/var/lib/postgresql/data
-      - ./postgresql/sqls:/docker-entrypoint-initdb.d
+      - ./db/data:/var/lib/postgresql/data
+      # - ./postgresql/sqls:/docker-entrypoint-initdb.d
 
   zabbix-server:
     image: zabbix/zabbix-server-pgsql:alpine-5.0-latest
     ports:  
-      - '10051:10051'
+      - "10051:10051"
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
     environment:
       - DB_SERVER_HOST=timescaledb
       - POSTGRES_USER=zabbix
@@ -25,11 +27,16 @@ services:
       - timescaledb
 
   zabbix-frontend:
-    image: zabbix/zabbix-web-nginx-pgsql:alpine-latest
+    image: zabbix/zabbix-web-nginx-pgsql:alpine-5.0-latest
     ports:
       - '8080:8080'
+      - '8443:8443'
+      - '443:443'
     depends_on:
       - timescaledb
+    volumes:
+      - ./certificates:/etc/ssl/nginx:ro
+      # /etc/nginx/conf.d/
     environment: 
       - DB_SERVER_HOST=timescaledb
       - POSTGRES_USER=zabbix
