@@ -29,14 +29,14 @@ services:
   zabbix-frontend:
     image: zabbix/zabbix-web-nginx-pgsql:alpine-5.0-latest
     ports:
-      - '8080:8080'
-      - '8443:8443'
-      - '443:443'
+      # - '8080:8080'
+      - '443:8443'
     depends_on:
       - timescaledb
     volumes:
-      - ./certificates:/etc/ssl/nginx:ro
-      # /etc/nginx/conf.d/
+      - /etc/letsencrypt/live/zabbix-test.duckdns.org/fullchain.pem:/etc/ssl/nginx/ssl.crt
+      - /etc/letsencrypt/live/zabbix-test.duckdns.org/privkey.pem:/etc/ssl/nginx/ssl.key
+      - ./certificates/dhparam.pem:/etc/ssl/nginx/dhparam.pem
     environment: 
       - DB_SERVER_HOST=timescaledb
       - POSTGRES_USER=zabbix
