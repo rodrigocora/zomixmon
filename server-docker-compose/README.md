@@ -1,3 +1,15 @@
+## Installation 
+
+```
+sudo yum-config-manager \
+--add-repo \
+https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install docker-ce git
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker omixmon
+```
+
 ## SSL Configuration
 
 ### Create dhparam file
