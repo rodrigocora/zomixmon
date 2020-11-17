@@ -1,3 +1,6 @@
+***Notas:***
+Neste momento temos um docker-compose.yaml aparte, mas a ideia será juntar com o do frontend caso o certificado continue partilhado.
+
 ***Grafana Server -> Docker compose***
 
     sudo yum install docker
