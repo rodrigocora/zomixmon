@@ -11,6 +11,11 @@ services:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
       - ./grafana/plugins/:/var/lib/grafana/plugins/
+      - ./certs/:/var/lib/grafana/ssl/
+      - /etc/letsencrypt/live/zomixmon-server.northeurope.cloudapp.azure.com/fullchain.pem:/var/lib/grafana/ssl/ssl.crt
+      - /etc/letsencrypt/live/zomixmon-server.northeurope.cloudapp.azure.com/privkey.pem:/var/lib/grafana/ssl/ssl.key
     restart: unless-stopped
+    env_file: ./config.env
+
 volumes:
-  grafana_data: {}
+        grafana_data: {}
