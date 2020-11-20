@@ -4,30 +4,29 @@
 
 
 **Create user**
-CREATE USER zabbix_mon IDENTIFIED BY <PASSWORD>;
--- Grant access to the zabbix_mon user.
-GRANT CONNECT, CREATE SESSION TO zabbix_mon;
-GRANT SELECT ON DBA_TABLESPACE_USAGE_METRICS TO zabbix_mon;
-GRANT SELECT ON DBA_TABLESPACES TO zabbix_mon;
-GRANT SELECT ON DBA_USERS TO zabbix_mon;
-GRANT SELECT ON SYS.DBA_DATA_FILES TO zabbix_mon;
-GRANT SELECT ON V$ACTIVE_SESSION_HISTORY TO zabbix_mon;
-GRANT SELECT ON V$ARCHIVE_DEST TO zabbix_mon;
-GRANT SELECT ON V$ASM_DISKGROUP TO zabbix_mon;
-GRANT SELECT ON V$DATABASE TO zabbix_mon;
-GRANT SELECT ON V$DATAFILE TO zabbix_mon;
-GRANT SELECT ON V$INSTANCE TO zabbix_mon;
-GRANT SELECT ON V$LOG TO zabbix_mon;
-GRANT SELECT ON V$OSSTAT TO zabbix_mon;
-GRANT SELECT ON V$PGASTAT TO zabbix_mon;
-GRANT SELECT ON V$PROCESS TO zabbix_mon;
-GRANT SELECT ON V$RECOVERY_FILE_DEST TO zabbix_mon;
-GRANT SELECT ON V$RESTORE_POINT TO zabbix_mon;
-GRANT SELECT ON V$SESSION TO zabbix_mon;
-GRANT SELECT ON V$SGASTAT TO zabbix_mon;
-GRANT SELECT ON V$SYSMETRIC TO zabbix_mon;
-GRANT SELECT ON V$SYSTEM_PARAMETER TO zabbix_mon;
 
+  CREATE USER c##zabbix_mon IDENTIFIED BY <password>;
+  GRANT CONNECT, CREATE SESSION TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$instance TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$database TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$sysmetric TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$system_parameter TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$session TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$recovery_file_dest TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$active_session_history TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$osstat TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$restore_point TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$process TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$datafile TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$pgastat TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$sgastat TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$log TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$archive_dest TO c##zabbix_mon;
+  GRANT SELECT ON sys.v_$asm_diskgroup TO c##zabbix_mon;
+  GRANT SELECT ON sys.dba_data_files TO c##zabbix_mon;
+  GRANT SELECT ON DBA_TABLESPACES TO c##zabbix_mon;
+  GRANT SELECT ON DBA_TABLESPACE_USAGE_METRICS TO c##zabbix_mon;
+  GRANT SELECT ON DBA_USERS TO c##zabbix_mon;
 
 
 
