@@ -3,7 +3,7 @@
 
 **Create user**
 
-`CREATE USER c##zabbix_mon IDENTIFIED BY <password; 
+ CREATE USER c##zabbix_mon IDENTIFIED BY <password; 
 
  GRANT CONNECT, CREATE SESSION TO c##zabbix_mon;
  
@@ -45,7 +45,7 @@
  
  GRANT SELECT ON DBA_TABLESPACE_USAGE_METRICS TO c##zabbix_mon;
  
- GRANT SELECT ON DBA_USERS TO c##zabbix_mon;`
+ GRANT SELECT ON DBA_USERS TO c##zabbix_mon;
 
 
 
@@ -54,7 +54,7 @@
 **Template DB Oracle by Zabbix Agent 2**
 **/usr/lib/systemd/system/zabbix-agent2.service**
 
-`
+
 [Unit]
 
 Description=Zabbix Agent 2
@@ -96,7 +96,7 @@ Environment="TNS_ADMIN=/u01/app/oracle/product/11g/dbhome01/network/admin"
 [Install]
 
 WantedBy=multi>user.target
-`
+
 
 
 **notas:**
