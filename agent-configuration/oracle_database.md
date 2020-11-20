@@ -4,29 +4,28 @@
 
 
 **Create user**
-
-  CREATE USER c##zabbix_mon IDENTIFIED BY <password>;
-  GRANT CONNECT, CREATE SESSION TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$instance TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$database TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$sysmetric TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$system_parameter TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$session TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$recovery_file_dest TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$active_session_history TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$osstat TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$restore_point TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$process TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$datafile TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$pgastat TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$sgastat TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$log TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$archive_dest TO c##zabbix_mon;
-  GRANT SELECT ON sys.v_$asm_diskgroup TO c##zabbix_mon;
-  GRANT SELECT ON sys.dba_data_files TO c##zabbix_mon;
-  GRANT SELECT ON DBA_TABLESPACES TO c##zabbix_mon;
-  GRANT SELECT ON DBA_TABLESPACE_USAGE_METRICS TO c##zabbix_mon;
-  GRANT SELECT ON DBA_USERS TO c##zabbix_mon;
+- CREATE USER c##zabbix_mon IDENTIFIED BY <password>;
+- GRANT CONNECT, CREATE SESSION TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$instance TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$database TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$sysmetric TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$system_parameter TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$session TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$recovery_file_dest TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$active_session_history TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$osstat TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$restore_point TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$process TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$datafile TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$pgastat TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$sgastat TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$log TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$archive_dest TO c##zabbix_mon;
+- GRANT SELECT ON sys.v_$asm_diskgroup TO c##zabbix_mon;
+- GRANT SELECT ON sys.dba_data_files TO c##zabbix_mon;
+- GRANT SELECT ON DBA_TABLESPACES TO c##zabbix_mon;
+- GRANT SELECT ON DBA_TABLESPACE_USAGE_METRICS TO c##zabbix_mon;
+- GRANT SELECT ON DBA_USERS TO c##zabbix_mon;
 
 
 
