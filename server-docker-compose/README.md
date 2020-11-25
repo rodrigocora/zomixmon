@@ -10,22 +10,39 @@ sudo systemctl enable docker
 sudo usermod -aG docker omixmon
 ```
 
+## Clone
+
+`git clone https://github.com/rodrigocora/zomixmon.git`
+
 ## SSL Configuration
+
+### Certbot installation
+
+[Install snap](https://certbot.eff.org/lets-encrypt/centosrhel8-nginx)
+
+
 
 ### Create dhparam file
 
-`openssl dhparam -out /home/opc/zabbix-db-drivers/docker-compose-server/certificates/dhparam.pem 2048`
+`openssl dhparam -out ~/zomixmon/server-docker-compose/certificates/dhparam.pem 2048`
+
+### Allow connection on port 80
 
 
 ### Create the signed certificates
 
 ```
-sudo certbot certonly --standalone --preferred-challenges https -d zabbix-test.duckdns.org
-sudo chmod +r /home/opc/zabbix-db-drivers/docker-compose-server/certificates/ssl.key
-sudo chmod +r /home/opc/zabbix-db-drivers/docker-compose-server/certificates/ssl.crt
-sudo chmod +r /home/opc/zabbix-db-drivers/docker-compose-server/certificates/dhparam.pem
+echo "export zabbix_url=<zabbix-url-example.com>" > ~/.bash_profile
+source ~/.bash_profile
+```
+
+```
+sudo certbot certonly --standalone --preferred-challenges http -d ${zabbix_url}
+sudo chmod o+r /etc/letsencrypt/live/${zabbix_url}/fullchain.pem
+sudo chmod o+r /etc/letsencrypt/live/${zabbix_url}/privkey.pem
+
 ``` 
-#### update the service
+#### update the service (if deployed)
 
 `docker service update --force zabbix_zabbix-frontend`
 
@@ -34,3 +51,13 @@ sudo chmod +r /home/opc/zabbix-db-drivers/docker-compose-server/certificates/dhp
 
 `00 02 * * * sudo certbot renew --quiet; docker service update --force zabbix_zabbix-frontend`
 
+```
+docker stack deploy zabbix-server --prune --compose-file ~/zomixmon/server-docker-compose/docker-compose.yml
+```
+
+## Install zabbix-agent
+
+### centOS 8
+
+rpm -Uvh https://repo.zabbix.com/zabbix/5.0/rhel/8/x86_64/zabbix-release-5.0-1.el8.noarch.rpm
+dnf install zabbix-agent2

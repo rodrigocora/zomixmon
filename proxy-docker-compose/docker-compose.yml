@@ -1,10 +1,10 @@
 version: "3.3"
 services:
-  zabbixproxy_db:
+  zabbix_proxy_db:
     image: mysql:5.7
     command: mysqld --character-set-server=utf8 --collation-server=utf8_bin --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
     environment:
-      MYSQL_ROOT_PASSWORD: oramix666
+      MYSQL_ROOT_PASSWORD: ximaro123
       MYSQL_DATABASE: zabbix_proxy
       MYSQL_USER: zabbix
       MYSQL_PASSWORD: zabbix
@@ -15,31 +15,31 @@ services:
       - zabbix-proxy-db-data:/var/lib/mysql/
     restart: unless-stopped
 
-  zabbixproxy:
+  zabbix_proxy:
     image: zabbix-proxy-mysql-odbc:latest
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
     environment:
-      DB_SERVER_HOST: zabbixproxy_db
+      DB_SERVER_HOST: zabbix_proxy_db
       DB_SERVER_PORT: 3306
       MYSQL_USER: zabbix
       MYSQL_PASSWORD: zabbix
-      ZBX_HOSTNAME: ps.oci.docker-zabbix-proxy
-      ZBX_SERVER_HOST: 130.61.94.213
+      ZBX_HOSTNAME: az-zabbix-proxy
+      ZBX_SERVER_HOST: omixmon-zabbix.northeurope.cloudapp.azure.com
       ZBX_SERVER_PORT: 10051
-      ZBX_TLSPSKIDENTITY: ps.oci.docker-zabbix-proxy
+      ZBX_TLSPSKIDENTITY: az-zabbix-proxy
       ZBX_TLSCONNECT: psk
       ZBX_TLSPSKFILE: zabbix_proxy.psk
       ZBX_ENABLEREMOTECOMMANDS: 1
     depends_on:
-      - zabbixproxy_db
+      - zabbix_proxy_db
     volumes:
-      - ./zabbix_proxy.psk:/var/lib/zabbix/enc/zabbix_proxy.psk
-      - ./etc/odbc.ini:/etc/odbc.ini
-      - ./etc/odbcinst.ini:/etc/odbcinst.ini
-      - ./lib/network/admin/tnsnames.ora:/lib/network/admin/tnsnames.ora
+      - /src/docker/zabbix-proxy/etc/odbc.ini:/etc/odbc.ini
+      - /src/docker/zabbix-proxy/etc/odbcinst.ini:/etc/odbcinst.ini
+      - /src/docker/zabbix-proxy/etc/zabbix_proxy.psk:/var/lib/zabbix/enc/zabbix_proxy.psk
+      - /src/docker/zabbix-proxy/etc/tnsnames.ora:/lib/network/admin/tnsnames.ora
     links:
-      - zabbixproxy_db
+      - zabbix_proxy_db
     restart: unless-stopped
 
 volumes:
